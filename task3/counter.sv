@@ -10,9 +10,10 @@ module counter #(
 );
 
 always_ff @ (posedge clk)
+begin
     if (rst)    
         count <={WIDTH{1'b0}};
-    else if(en) begin
+    else if(en) 
         count <=count + incr;
     end
 

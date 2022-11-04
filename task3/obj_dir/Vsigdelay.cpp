@@ -13,12 +13,13 @@ Vsigdelay::Vsigdelay(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vsigdelay__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
+    , en{vlSymsp->TOP.en}
     , wr{vlSymsp->TOP.wr}
     , rd{vlSymsp->TOP.rd}
-    , incr{vlSymsp->TOP.incr}
     , mic_signal{vlSymsp->TOP.mic_signal}
-    , delayed_signal{vlSymsp->TOP.delayed_signal}
     , offset{vlSymsp->TOP.offset}
+    , delayed_signal{vlSymsp->TOP.delayed_signal}
+    , incr{vlSymsp->TOP.incr}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

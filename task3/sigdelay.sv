@@ -10,7 +10,7 @@ module sigdelay #(
     input   logic               wr,
     input   logic               rd,
     input   logic [D_WIDTH-1:0] mic_signal,
-    input   logic [A_WIDTH-1:0] offset,
+    input   logic [D_WIDTH-1:0] offset,
     output  logic [D_WIDTH-1:0] delayed_signal
 );
 

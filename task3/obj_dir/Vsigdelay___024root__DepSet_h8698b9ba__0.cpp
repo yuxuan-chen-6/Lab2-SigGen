@@ -12,32 +12,35 @@ VL_INLINE_OPT void Vsigdelay___024root___sequent__TOP__0(Vsigdelay___024root* vl
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vsigdelay___024root___sequent__TOP__0\n"); );
     // Init
     SData/*8:0*/ __Vdly__sigdelay__DOT__address;
-    SData/*8:0*/ __Vdlyvdim0__sigdelay__DOT__ram__DOT__ram_array__v0;
-    CData/*7:0*/ __Vdlyvval__sigdelay__DOT__ram__DOT__ram_array__v0;
-    CData/*0:0*/ __Vdlyvset__sigdelay__DOT__ram__DOT__ram_array__v0;
+    SData/*8:0*/ __Vdlyvdim0__sigdelay__DOT__sineRam__DOT__ram_array__v0;
+    CData/*7:0*/ __Vdlyvval__sigdelay__DOT__sineRam__DOT__ram_array__v0;
+    CData/*0:0*/ __Vdlyvset__sigdelay__DOT__sineRam__DOT__ram_array__v0;
     // Body
     __Vdly__sigdelay__DOT__address = vlSelf->sigdelay__DOT__address;
-    __Vdlyvset__sigdelay__DOT__ram__DOT__ram_array__v0 = 0U;
-    __Vdly__sigdelay__DOT__address = ((IData)(vlSelf->rst)
-                                       ? 0U : (0x1ffU 
-                                               & ((IData)(vlSelf->sigdelay__DOT__address) 
-                                                  + (IData)(vlSelf->incr))));
+    __Vdlyvset__sigdelay__DOT__sineRam__DOT__ram_array__v0 = 0U;
+    if (vlSelf->rst) {
+        __Vdly__sigdelay__DOT__address = 0U;
+    } else if (vlSelf->en) {
+        __Vdly__sigdelay__DOT__address = (0x1ffU & 
+                                          ((IData)(vlSelf->sigdelay__DOT__address) 
+                                           + (IData)(vlSelf->incr)));
+    }
     if (vlSelf->rd) {
-        vlSelf->delayed_signal = vlSelf->sigdelay__DOT__ram__DOT__ram_array
+        vlSelf->delayed_signal = vlSelf->sigdelay__DOT__sineRam__DOT__ram_array
             [(0x1ffU & ((IData)(vlSelf->sigdelay__DOT__address) 
                         - (IData)(vlSelf->offset)))];
     }
     if (vlSelf->wr) {
-        __Vdlyvval__sigdelay__DOT__ram__DOT__ram_array__v0 
+        __Vdlyvval__sigdelay__DOT__sineRam__DOT__ram_array__v0 
             = vlSelf->mic_signal;
-        __Vdlyvset__sigdelay__DOT__ram__DOT__ram_array__v0 = 1U;
-        __Vdlyvdim0__sigdelay__DOT__ram__DOT__ram_array__v0 
+        __Vdlyvset__sigdelay__DOT__sineRam__DOT__ram_array__v0 = 1U;
+        __Vdlyvdim0__sigdelay__DOT__sineRam__DOT__ram_array__v0 
             = vlSelf->sigdelay__DOT__address;
     }
     vlSelf->sigdelay__DOT__address = __Vdly__sigdelay__DOT__address;
-    if (__Vdlyvset__sigdelay__DOT__ram__DOT__ram_array__v0) {
-        vlSelf->sigdelay__DOT__ram__DOT__ram_array[__Vdlyvdim0__sigdelay__DOT__ram__DOT__ram_array__v0] 
-            = __Vdlyvval__sigdelay__DOT__ram__DOT__ram_array__v0;
+    if (__Vdlyvset__sigdelay__DOT__sineRam__DOT__ram_array__v0) {
+        vlSelf->sigdelay__DOT__sineRam__DOT__ram_array[__Vdlyvdim0__sigdelay__DOT__sineRam__DOT__ram_array__v0] 
+            = __Vdlyvval__sigdelay__DOT__sineRam__DOT__ram_array__v0;
     }
 }
 
@@ -63,11 +66,13 @@ void Vsigdelay___024root___eval_debug_assertions(Vsigdelay___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->rst & 0xfeU))) {
         Verilated::overWidthError("rst");}
+    if (VL_UNLIKELY((vlSelf->incr & 0xfe00U))) {
+        Verilated::overWidthError("incr");}
+    if (VL_UNLIKELY((vlSelf->en & 0xfeU))) {
+        Verilated::overWidthError("en");}
     if (VL_UNLIKELY((vlSelf->wr & 0xfeU))) {
         Verilated::overWidthError("wr");}
     if (VL_UNLIKELY((vlSelf->rd & 0xfeU))) {
         Verilated::overWidthError("rd");}
-    if (VL_UNLIKELY((vlSelf->offset & 0xfe00U))) {
-        Verilated::overWidthError("offset");}
 }
 #endif  // VL_DEBUG

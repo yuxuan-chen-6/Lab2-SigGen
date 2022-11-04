@@ -25,14 +25,14 @@ void Vsigdelay___024root__trace_chg_sub_0(Vsigdelay___024root* vlSelf, Verilated
     // Body
     bufp->chgBit(oldp+0,(vlSelf->clk));
     bufp->chgBit(oldp+1,(vlSelf->rst));
-    bufp->chgBit(oldp+2,(vlSelf->wr));
-    bufp->chgBit(oldp+3,(vlSelf->rd));
-    bufp->chgCData(oldp+4,(vlSelf->incr),8);
-    bufp->chgSData(oldp+5,(vlSelf->offset),9);
+    bufp->chgSData(oldp+2,(vlSelf->incr),9);
+    bufp->chgBit(oldp+3,(vlSelf->en));
+    bufp->chgBit(oldp+4,(vlSelf->wr));
+    bufp->chgBit(oldp+5,(vlSelf->rd));
     bufp->chgCData(oldp+6,(vlSelf->mic_signal),8);
-    bufp->chgCData(oldp+7,(vlSelf->delayed_signal),8);
-    bufp->chgSData(oldp+8,(vlSelf->sigdelay__DOT__address),9);
-    bufp->chgSData(oldp+9,(vlSelf->incr),9);
+    bufp->chgCData(oldp+7,(vlSelf->offset),8);
+    bufp->chgCData(oldp+8,(vlSelf->delayed_signal),8);
+    bufp->chgSData(oldp+9,(vlSelf->sigdelay__DOT__address),9);
     bufp->chgSData(oldp+10,((0x1ffU & ((IData)(vlSelf->sigdelay__DOT__address) 
                                        - (IData)(vlSelf->offset)))),9);
 }
